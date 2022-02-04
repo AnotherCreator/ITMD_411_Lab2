@@ -10,8 +10,6 @@ This lab will have us parse the data and print a record for future loan consider
 
 public class BankRecordsTest {
     public static void main(String[] args) {
-        Client newClient = new Client();
 
-        newClient.readData();
     }
 }
