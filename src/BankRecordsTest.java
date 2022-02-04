@@ -11,5 +11,8 @@ This lab will have us parse the data and print a record for future loan consider
 public class BankRecordsTest {
     public static void main(String[] args) {
 
+        // Create a new obj and parse / cache / print .csv data
+        BankRecords records = new BankRecords();
+        records.readData();
     }
 }
