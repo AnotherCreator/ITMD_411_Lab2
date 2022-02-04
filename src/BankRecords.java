@@ -2,9 +2,10 @@ import java.awt.geom.Area;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class BankRecords {
+public class BankRecords extends Client{
     // Variables
     static BankRecords[] robjs = new BankRecords[600];
     static ArrayList<String> bankDetails = new ArrayList<>(600); // Hold spreadsheet rows+columns
@@ -98,28 +99,33 @@ public class BankRecords {
         return hasPep;
     }
 
-    // Code Definitions
-    Client client = new Client() {
-        @Override
-        void readData() {
-            BufferedReader br;
-            try {
-                br = new BufferedReader(new FileReader("bank-Detail.csv"));
+    @Override
+    void readData() {
+        BufferedReader br;
+        String line;
 
+        try {
+            br = new BufferedReader(new FileReader("bank-Detail.csv"));
+
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
             }
-            catch (FileNotFoundException e) {
-                System.out.println("File not found");
-            }
         }
-
-        @Override
-        void processData() {
-
+        catch (FileNotFoundException e) {
+            System.out.println("File not found");
         }
-
-        @Override
-        void printData() {
-
+        catch (IOException e) {
+            e.printStackTrace();
         }
-    };
+    }
+
+    @Override
+    void processData() {
+
+    }
+
+    @Override
+    void printData() {
+
+    }
 }
