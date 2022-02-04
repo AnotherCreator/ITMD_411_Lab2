@@ -4,11 +4,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class BankRecords extends Client{
     // Variables
-    static BankRecords[] robjs = new BankRecords[600];
-    static ArrayList<String> bankDetails = new ArrayList<>(600); // Hold spreadsheet rows+columns
+    static BankRecords[] bankEntry = new BankRecords[600];
+    static ArrayList<List<String>> bankAccDetails = new ArrayList<>(600); // Hold spreadsheet rows+columns
 
     private String id;
     private int age;
@@ -100,16 +102,18 @@ public class BankRecords extends Client{
     }
 
     @Override
-    void readData() {
+    public void readData() {
         BufferedReader br;
         String line;
 
+        // Attempt to read file and set each .csv row as a comma-separated array
         try {
             br = new BufferedReader(new FileReader("bank-Detail.csv"));
-
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
+                bankAccDetails.add(Arrays.asList(line.split(",")));
             }
+
+            processData();
         }
         catch (FileNotFoundException e) {
             System.out.println("File not found");
@@ -120,12 +124,29 @@ public class BankRecords extends Client{
     }
 
     @Override
-    void processData() {
+    public void processData() {
+        int i = 0;
 
+        for (List<String> rowData: bankAccDetails) {
+            bankEntry[i] = new BankRecords();
+            bankEntry[i].setId(rowData.get(0));
+            bankEntry[i].setAge(Integer.parseInt(rowData.get(1)));
+            bankEntry[i].setSex(rowData.get(2));
+            bankEntry[i].setRegion(rowData.get(3));
+            bankEntry[i].setIncome(Double.parseDouble(rowData.get(4)));
+            bankEntry[i].setIsMarried(rowData.get(5));
+            bankEntry[i].setChildren(Integer.parseInt(rowData.get(6)));
+            bankEntry[i].setHasCar(rowData.get(7));
+            bankEntry[i].setHasSaveAct(rowData.get(8));
+            bankEntry[i].setHasCurrentAct(rowData.get(9));
+            bankEntry[i].setHasMortgage(rowData.get(10));
+            bankEntry[i].setHasPep(rowData.get(11));
+            i++;
+        }
     }
 
     @Override
-    void printData() {
+    public void printData() {
 
     }
 }
