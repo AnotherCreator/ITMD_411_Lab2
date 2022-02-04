@@ -127,6 +127,7 @@ public class BankRecords extends Client{
     public void processData() {
         int i = 0;
 
+        // Go through each entry in 'bankAccDetails' and
         for (List<String> rowData: bankAccDetails) {
             bankEntry[i] = new BankRecords();
             bankEntry[i].setId(rowData.get(0));
@@ -143,10 +144,19 @@ public class BankRecords extends Client{
             bankEntry[i].setHasPep(rowData.get(11));
             i++;
         }
+        printData();
     }
 
     @Override
     public void printData() {
-
+        System.out.println(
+                "ID \t\t\t| AGE |   SEX   |   REGION   | INCOME | MARRIED | CHILDREN | CAR | SAVE ACT | CURRENT ACT | MORTGAGE | PEP");
+        for (int i = 0; i < 25; i++) {
+            System.out.printf("%s \t  %d \t %s %s %.2f %s %d %s %s %s %s %s\n",
+                    bankEntry[i].getId(), bankEntry[i].getAge(), bankEntry[i].getSex(), bankEntry[i].getRegion(),
+                    bankEntry[i].getIncome(), bankEntry[i].getIsMarried(), bankEntry[i].getChildren(),
+                    bankEntry[i].getHasCar(), bankEntry[i].getHasSaveAct(), bankEntry[i].getHasCurrentAct(),
+                    bankEntry[i].getHasMortgage(), bankEntry[i].getHasPep());
+        }
     }
 }
