@@ -1,3 +1,7 @@
+import java.awt.geom.Area;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 public class BankRecords {
@@ -93,4 +97,29 @@ public class BankRecords {
     public String getHasPep() {
         return hasPep;
     }
+
+    // Code Definitions
+    Client client = new Client() {
+        @Override
+        void readData() {
+            BufferedReader br;
+            try {
+                br = new BufferedReader(new FileReader("bank-Detail.csv"));
+
+            }
+            catch (FileNotFoundException e) {
+                System.out.println("File not found");
+            }
+        }
+
+        @Override
+        void processData() {
+
+        }
+
+        @Override
+        void printData() {
+
+        }
+    };
 }
