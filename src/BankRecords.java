@@ -150,9 +150,10 @@ public class BankRecords extends Client{
     @Override
     public void printData() {
         System.out.println(
-                "ID \t\t\t| AGE |   SEX   |   REGION   | INCOME | MARRIED | CHILDREN | CAR | SAVE ACT | CURRENT ACT | MORTGAGE | PEP");
+                "ID \t\t| AGE |   SEX   |   REGION   | INCOME | MARRIED | CHILDREN |  CAR  | SAVE ACT | CURRENT ACT | MORTGAGE | PEP");
+
         for (int i = 0; i < 25; i++) {
-            System.out.printf("%s \t  %d \t %s %s %.2f %s %d %s %s %s %s %s\n",
+            System.out.printf("%-9s %d \t %-9s %-10s %.2f\t%-10s\t%-9d %-4s \t\t%-4s \t\t%-4s \t\t%-2s\t\t %-5s\n",
                     bankEntry[i].getId(), bankEntry[i].getAge(), bankEntry[i].getSex(), bankEntry[i].getRegion(),
                     bankEntry[i].getIncome(), bankEntry[i].getIsMarried(), bankEntry[i].getChildren(),
                     bankEntry[i].getHasCar(), bankEntry[i].getHasSaveAct(), bankEntry[i].getHasCurrentAct(),
