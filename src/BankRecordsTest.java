@@ -10,6 +10,8 @@ This lab will have us parse the data and print a record for future loan consider
 Each row will be stored in an ArrayList as string arrays
 From there, iterate through the entire ArrayList and through each string array
 Create a new BankRecord object per string array and populate each field appropriately using setters
+
+Display the first 25 entries in a column-type format
 */
 
 public class BankRecordsTest {
