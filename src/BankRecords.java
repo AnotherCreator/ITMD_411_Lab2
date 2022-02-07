@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// Child-class of parent-class Client
 public class BankRecords extends Client{
     // Variables
     static BankRecords[] bankEntry = new BankRecords[600];
@@ -112,7 +113,6 @@ public class BankRecords extends Client{
             while ((line = br.readLine()) != null) {
                 bankAccDetails.add(Arrays.asList(line.split(",")));
             }
-
             processData();
         }
         catch (FileNotFoundException e) {
@@ -127,7 +127,8 @@ public class BankRecords extends Client{
     public void processData() {
         int i = 0;
 
-        // Go through each entry in 'bankAccDetails' and
+        // Go through each entry in 'bankAccDetails' and create a new bankEntry obj while populating
+        // each field appropriately
         for (List<String> rowData: bankAccDetails) {
             bankEntry[i] = new BankRecords();
             bankEntry[i].setId(rowData.get(0));
