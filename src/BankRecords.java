@@ -10,99 +10,121 @@ import java.util.List;
 public class BankRecords extends Client{
     // Variables
     static BankRecords[] bankEntry = new BankRecords[600];
-    static ArrayList<List<String>> bankAccDetails = new ArrayList<>(600); // Hold spreadsheet rows+columns
+    static ArrayList<List<String>> bankAccDetails = new ArrayList<>(600);
 
-    private String id;
-    private int age;
-    private String sex;
-    private String region;
-    private double income;
-    private String isMarried;
-    private int children;
-    private String hasCar;
-    private String hasSaveAct;
-    private String hasCurrentAct;
-    private String hasMortgage;
-    private String hasPep;
+    private String clientID;
+    private int clientAge;
+    private String clientSex;
+    private String clientRegion;
+    private double clientIncome;
+    private String clientMarriageStatus;
+    private int clientChildAmount;
+    private String clientCarStatus;
+    private String clientSaveActStatus;
+    private String clientCurrentActStatus;
+    private String clientMortgageStatus;
+    private String clientPepStatus;
 
     // Setters
-    public void setId(String id) {
-        this.id = id;
+    public void setClientID(String clientID) {
+        this.clientID = clientID;
     }
-    public void setAge(int age) {
-        this.age = age;
+
+    public void setClientAge(int clientAge) {
+        this.clientAge = clientAge;
     }
-    public void setSex(String sex) {
-        this.sex = sex;
+
+    public void setClientSex(String clientSex) {
+        this.clientSex = clientSex;
     }
-    public void setRegion(String region) {
-        this.region = region;
+
+    public void setClientRegion(String clientRegion) {
+        this.clientRegion = clientRegion;
     }
-    public void setIncome(double income) {
-        this.income = income;
+
+    public void setClientIncome(double clientIncome) {
+        this.clientIncome = clientIncome;
     }
-    public void setIsMarried(String isMarried) {
-        this.isMarried = isMarried;
+
+    public void setClientMarriageStatus(String clientMarriageStatus) {
+        this.clientMarriageStatus = clientMarriageStatus;
     }
-    public void setChildren(int children) {
-        this.children = children;
+
+    public void setClientChildAmount(int clientChildAmount) {
+        this.clientChildAmount = clientChildAmount;
     }
-    public void setHasCar(String hasCar) {
-        this.hasCar = hasCar;
+
+    public void setClientCarStatus(String clientCarStatus) {
+        this.clientCarStatus = clientCarStatus;
     }
-    public void setHasSaveAct(String hasSaveAct) {
-        this.hasSaveAct = hasSaveAct;
+
+    public void setClientSaveActStatus(String clientSaveActStatus) {
+        this.clientSaveActStatus = clientSaveActStatus;
     }
-    public void setHasCurrentAct(String hasCurrentAct) {
-        this.hasCurrentAct = hasCurrentAct;
+
+    public void setClientCurrentActStatus(String clientCurrentActStatus) {
+        this.clientCurrentActStatus = clientCurrentActStatus;
     }
-    public void setHasMortgage(String hasMortgage) {
-        this.hasMortgage = hasMortgage;
+
+    public void setClientMortgageStatus(String clientMortgageStatus) {
+        this.clientMortgageStatus = clientMortgageStatus;
     }
-    public void setHasPep(String hasPep) {
-        this.hasPep = hasPep;
+
+    public void setClientPepStatus(String clientPepStatus) {
+        this.clientPepStatus = clientPepStatus;
     }
 
     // Getters
-    public String getId() {
-        return id;
+    public String getClientID() {
+        return clientID;
     }
-    public int getAge() {
-        return age;
+
+    public int getClientAge() {
+        return clientAge;
     }
-    public String getSex() {
-        return sex;
+
+    public String getClientSex() {
+        return clientSex;
     }
-    public String getRegion() {
-        return region;
+
+    public String getClientRegion() {
+        return clientRegion;
     }
-    public double getIncome() {
-        return income;
+
+    public double getClientIncome() {
+        return clientIncome;
     }
-    public String getIsMarried() {
-        return isMarried;
+
+    public String getClientMarriageStatus() {
+        return clientMarriageStatus;
     }
-    public int getChildren() {
-        return children;
+
+    public int getClientChildAmount() {
+        return clientChildAmount;
     }
-    public String getHasCar() {
-        return hasCar;
+
+    public String getClientCarStatus() {
+        return clientCarStatus;
     }
-    public String getHasSaveAct() {
-        return hasSaveAct;
+
+    public String getClientSaveActStatus() {
+        return clientSaveActStatus;
     }
-    public String getHasCurrentAct() {
-        return hasCurrentAct;
+
+    public String getClientCurrentActStatus() {
+        return clientCurrentActStatus;
     }
-    public String getHasMortgage() {
-        return hasMortgage;
+
+    public String getClientMortgageStatus() {
+        return clientMortgageStatus;
     }
-    public String getHasPep() {
-        return hasPep;
+
+    public String getClientPepStatus() {
+        return clientPepStatus;
     }
 
     @Override
-    public void readData() {
+    public void readClientData() {
         BufferedReader br;
         String line;
 
@@ -112,7 +134,7 @@ public class BankRecords extends Client{
             while ((line = br.readLine()) != null) {
                 bankAccDetails.add(Arrays.asList(line.split(",")));
             }
-            processData();
+            processClientData();
         }
         catch (FileNotFoundException e) {
             System.out.println("File not found");
@@ -123,41 +145,41 @@ public class BankRecords extends Client{
     }
 
     @Override
-    public void processData() {
+    public void processClientData() {
         int i = 0;
 
         // Go through each entry in 'bankAccDetails' and create a new bankEntry obj while populating
         // each field appropriately
         for (List<String> rowData: bankAccDetails) {
             bankEntry[i] = new BankRecords();
-            bankEntry[i].setId(rowData.get(0));
-            bankEntry[i].setAge(Integer.parseInt(rowData.get(1)));
-            bankEntry[i].setSex(rowData.get(2));
-            bankEntry[i].setRegion(rowData.get(3));
-            bankEntry[i].setIncome(Double.parseDouble(rowData.get(4)));
-            bankEntry[i].setIsMarried(rowData.get(5));
-            bankEntry[i].setChildren(Integer.parseInt(rowData.get(6)));
-            bankEntry[i].setHasCar(rowData.get(7));
-            bankEntry[i].setHasSaveAct(rowData.get(8));
-            bankEntry[i].setHasCurrentAct(rowData.get(9));
-            bankEntry[i].setHasMortgage(rowData.get(10));
-            bankEntry[i].setHasPep(rowData.get(11));
+            bankEntry[i].setClientID(rowData.get(0));
+            bankEntry[i].setClientAge(Integer.parseInt(rowData.get(1)));
+            bankEntry[i].setClientSex(rowData.get(2));
+            bankEntry[i].setClientRegion(rowData.get(3));
+            bankEntry[i].setClientIncome(Double.parseDouble(rowData.get(4)));
+            bankEntry[i].setClientMarriageStatus(rowData.get(5));
+            bankEntry[i].setClientChildAmount(Integer.parseInt(rowData.get(6)));
+            bankEntry[i].setClientCarStatus(rowData.get(7));
+            bankEntry[i].setClientSaveActStatus(rowData.get(8));
+            bankEntry[i].setClientCurrentActStatus(rowData.get(9));
+            bankEntry[i].setClientMortgageStatus(rowData.get(10));
+            bankEntry[i].setClientPepStatus(rowData.get(11));
             i++;
         }
-        printData();
+        printClientData();
     }
 
     @Override
-    public void printData() {
+    public void printClientData() {
         System.out.println(
                 "ID \t\t| AGE |   SEX   |   REGION   | INCOME | MARRIED | CHILDREN |  CAR  | SAVE ACT | CURRENT ACT | MORTGAGE | PEP");
 
         for (int i = 0; i < 25; i++) {
             System.out.printf("%-9s %d \t %-9s %-10s %.2f\t%-10s\t%-9d %-4s \t\t%-4s \t\t%-4s \t\t%-2s\t\t %-5s\n",
-                    bankEntry[i].getId(), bankEntry[i].getAge(), bankEntry[i].getSex(), bankEntry[i].getRegion(),
-                    bankEntry[i].getIncome(), bankEntry[i].getIsMarried(), bankEntry[i].getChildren(),
-                    bankEntry[i].getHasCar(), bankEntry[i].getHasSaveAct(), bankEntry[i].getHasCurrentAct(),
-                    bankEntry[i].getHasMortgage(), bankEntry[i].getHasPep());
+                    bankEntry[i].getClientID(), bankEntry[i].getClientAge(), bankEntry[i].getClientSex(),
+                    bankEntry[i].getClientRegion(), bankEntry[i].getClientIncome(), bankEntry[i].getClientMarriageStatus(),
+                    bankEntry[i].getClientChildAmount(), bankEntry[i].getClientCarStatus(), bankEntry[i].getClientSaveActStatus(),
+                    bankEntry[i].getClientCurrentActStatus(), bankEntry[i].getClientMortgageStatus(), bankEntry[i].getClientPepStatus());
         }
     }
 }

@@ -1,5 +1,5 @@
 public abstract class Client {
-    abstract void readData();
-    abstract void processData();
-    abstract void printData();
+    abstract void readClientData();
+    abstract void processClientData();
+    abstract void printClientData();
 }
